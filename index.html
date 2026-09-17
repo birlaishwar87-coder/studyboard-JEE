@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#b6884f">
+<title>StudyBoard — JEE/NEET sticky-note board & tracker</title>
+<meta name="description" content="A handwritten sticky-note board for JEE/NEET aspirants: kanban board, question log, and syllabus tracker.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Patrick+Hand&family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-note">📌</span>
+      <span class="brand-text">StudyBoard</span>
+    </div>
+    <nav class="tabs" id="tabs">
+      <button class="tab-btn active" data-tab="board">Board</button>
+      <button class="tab-btn" data-tab="timer">Pomodoro</button>
+      <button class="tab-btn" data-tab="qlog">Question Log</button>
+      <button class="tab-btn" data-tab="syllabus">Syllabus</button>
+      <button class="tab-btn" data-tab="stats">Dashboard</button>
+    </nav>
+    <div class="exam-toggle">
+      <button class="exam-btn active" data-exam="JEE">JEE</button>
+      <button class="exam-btn" data-exam="NEET">NEET</button>
+    </div>
+  </header>
+
+  <!-- BOARD -->
+  <main id="view-board" class="view active">
+    <div class="corkboard">
+      <div class="column" data-status="todo">
+        <div class="column-head"><h2>To Do</h2><span class="count" id="count-todo">0</span></div>
+        <div class="notes-drop" data-status="todo"></div>
+        <button class="add-note-btn" data-status="todo">+ pin a note</button>
+      </div>
+      <div class="column" data-status="doing">
+        <div class="column-head"><h2>Doing</h2><span class="count" id="count-doing">0</span></div>
+        <div class="notes-drop" data-status="doing"></div>
+        <button class="add-note-btn" data-status="doing">+ pin a note</button>
+      </div>
+      <div class="column" data-status="done">
+        <div class="column-head"><h2>Done</h2><span class="count" id="count-done">0</span></div>
+        <div class="notes-drop" data-status="done"></div>
+        <button class="add-note-btn" data-status="done">+ pin a note</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- POMODORO TIMER -->
+  <main id="view-timer" class="view">
+    <div class="timer-wrap">
+      <div class="timer-card">
+        <div class="timer-mode-row" id="timer-mode-row">
+          <button class="mode-btn active" data-mode="focus">Focus</button>
+          <button class="mode-btn" data-mode="short">Short Break</button>
+          <button class="mode-btn" data-mode="long">Long Break</button>
+        </div>
+        <div class="timer-ring">
+          <svg viewBox="0 0 200 200" class="ring-svg">
+            <circle cx="100" cy="100" r="90" class="ring-track"></circle>
+            <circle cx="100" cy="100" r="90" class="ring-progress" id="ring-progress"></circle>
+          </svg>
+          <div class="timer-display" id="timer-display">25:00</div>
+        </div>
+        <div class="timer-subject-row">
+          <select id="timer-subject"><option value="">No subject</option></select>
+          <input id="timer-chapter" placeholder="chapter / topic (optional)">
+        </div>
+        <div class="timer-controls">
+          <button id="timer-start-btn" class="primary-btn">Start</button>
+          <button id="timer-reset-btn" class="ghost-btn">Reset</button>
+        </div>
+        <div class="timer-cycle-info">
+          <span id="timer-cycle-count">0</span> focus sessions completed today &middot; round <span id="timer-round">1</span>/<span id="timer-round-total">4</span>
+        </div>
+      </div>
+
+      <div class="panel timer-settings-panel">
+        <h2 class="panel-title">Timer settings</h2>
+        <div class="qform">
+          <div class="field">
+            <label>Focus (min)</label>
+            <input id="setting-focus" type="number" min="1" max="120" value="25">
+          </div>
+          <div class="field">
+            <label>Short break (min)</label>
+            <input id="setting-short" type="number" min="1" max="60" value="5">
+          </div>
+          <div class="field">
+            <label>Long break (min)</label>
+            <input id="setting-long" type="number" min="1" max="90" value="15">
+          </div>
+          <div class="field">
+            <label>Rounds before long break</label>
+            <input id="setting-rounds" type="number" min="1" max="12" value="4">
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2 class="panel-title">Today's focus sessions</h2>
+        <div class="table-wrap">
+          <table id="focus-table">
+            <thead><tr><th>Time</th><th>Subject</th><th>Chapter</th><th>Duration</th></tr></thead>
+            <tbody id="focus-table-body"></tbody>
+          </table>
+          <p id="focus-table-empty" class="empty-msg">No focus sessions logged today yet.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- QUESTION LOG -->
+  <main id="view-qlog" class="view">
+    <div class="panel">
+      <h2 class="panel-title">Log a question</h2>
+      <form id="qform" class="qform">
+        <div class="field">
+          <label>Subject</label>
+          <select id="q-subject" required></select>
+        </div>
+        <div class="field">
+          <label>Chapter / Topic</label>
+          <input id="q-chapter" list="chapter-list" placeholder="e.g. Rotational Motion" required>
+          <datalist id="chapter-list"></datalist>
+        </div>
+        <div class="field">
+          <label>Result</label>
+          <select id="q-result" required>
+            <option value="correct">Correct</option>
+            <option value="incorrect">Incorrect</option>
+            <option value="skipped">Skipped</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Difficulty</label>
+          <select id="q-difficulty" required>
+            <option value="easy">Easy</option>
+            <option value="medium" selected>Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Source</label>
+          <input id="q-source" placeholder="e.g. PYQ 2023, Allen module">
+        </div>
+        <div class="field">
+          <label>Time taken (min)</label>
+          <input id="q-time" type="number" min="0" step="1" placeholder="optional">
+        </div>
+        <div class="field">
+          <label>Date</label>
+          <input id="q-date" type="date" required>
+        </div>
+        <div class="field field-wide">
+          <label>Notes</label>
+          <input id="q-notes" placeholder="mistake reason, concept to revise, etc.">
+        </div>
+        <button type="submit" class="primary-btn">Log question</button>
+      </form>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title-row">
+        <h2 class="panel-title">Log history</h2>
+        <div class="filters">
+          <select id="filter-subject"><option value="all">All subjects</option></select>
+          <select id="filter-result">
+            <option value="all">All results</option>
+            <option value="correct">Correct</option>
+            <option value="incorrect">Incorrect</option>
+            <option value="skipped">Skipped</option>
+          </select>
+          <button id="clear-log-btn" class="ghost-btn">Clear all</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table id="qtable">
+          <thead>
+            <tr><th>Date</th><th>Subject</th><th>Chapter</th><th>Result</th><th>Difficulty</th><th>Time</th><th>Source</th><th>Notes</th><th></th></tr>
+          </thead>
+          <tbody id="qtable-body"></tbody>
+        </table>
+        <p id="qtable-empty" class="empty-msg">No questions logged yet — add your first one above.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- SYLLABUS -->
+  <main id="view-syllabus" class="view">
+    <div id="syllabus-subjects"></div>
+  </main>
+
+  <!-- STATS -->
+  <main id="view-stats" class="view">
+    <div class="stat-cards" id="stat-cards"></div>
+    <div class="panel">
+      <h2 class="panel-title">Accuracy by subject</h2>
+      <div id="subject-accuracy"></div>
+    </div>
+    <div class="panel">
+      <h2 class="panel-title">Syllabus progress</h2>
+      <div id="syllabus-progress-summary"></div>
+    </div>
+  </main>
+
+</div>
+
+<!-- Note editor modal -->
+<div id="note-modal" class="modal-overlay hidden">
+  <div class="modal">
+    <textarea id="note-text" maxlength="220" placeholder="Write on the sticky note..."></textarea>
+    <div class="color-row" id="note-colors">
+      <button data-color="yellow" class="color-swatch yellow"></button>
+      <button data-color="pink" class="color-swatch pink"></button>
+      <button data-color="blue" class="color-swatch blue"></button>
+      <button data-color="green" class="color-swatch green"></button>
+      <button data-color="orange" class="color-swatch orange"></button>
+    </div>
+    <div class="modal-actions">
+      <button id="note-delete-btn" class="ghost-btn danger">Delete</button>
+      <div>
+        <button id="note-cancel-btn" class="ghost-btn">Cancel</button>
+        <button id="note-save-btn" class="primary-btn">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="syllabus-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

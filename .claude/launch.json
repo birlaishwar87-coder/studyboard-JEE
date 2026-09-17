@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "studyboard2",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "serve", "-l", "8731", "D:\\Prepex Docs\\Sketch Board -JEE, NEET"],
+      "port": 8731
+    }
+  ]
+}
