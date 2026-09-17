@@ -1,0 +1,9 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sticky Notes by Prepex logo">
+  <rect x="6" y="6" width="40" height="40" rx="3" fill="#fff59d" transform="rotate(-6 26 26)"/>
+  <rect x="14" y="12" width="40" height="40" rx="3" fill="#ffb3c6" transform="rotate(4 34 32)"/>
+  <path d="M22 20 H50 V44 L42 52 H22 Z" fill="#a8d8ff"/>
+  <path d="M42 44 H50 L42 52 Z" fill="#7fb8e8"/>
+  <line x1="27" y1="27" x2="45" y2="27" stroke="#2b2118" stroke-width="1.6" stroke-linecap="round" opacity="0.55"/>
+  <line x1="27" y1="33" x2="45" y2="33" stroke="#2b2118" stroke-width="1.6" stroke-linecap="round" opacity="0.55"/>
+  <line x1="27" y1="39" x2="38" y2="39" stroke="#2b2118" stroke-width="1.6" stroke-linecap="round" opacity="0.55"/>
+</svg>

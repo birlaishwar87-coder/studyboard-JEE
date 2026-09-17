@@ -4,20 +4,88 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#b6884f">
-<title>StudyBoard — JEE/NEET sticky-note board & tracker</title>
-<meta name="description" content="A handwritten sticky-note board for JEE/NEET aspirants: kanban board, question log, and syllabus tracker.">
+<title>Sticky Notes by Prepex — Free JEE & NEET Study Planner, Syllabus Tracker & Pomodoro Timer</title>
+<meta name="description" content="Free sticky-note study planner for JEE & NEET aspirants: drag-and-drop task board, Pomodoro focus timer, question log with accuracy tracking, and a full JEE/NEET syllabus tracker. No signup needed.">
+<meta name="keywords" content="JEE study planner, NEET study planner, JEE syllabus tracker, NEET syllabus tracker, pomodoro timer for JEE NEET, JEE NEET question log, free JEE preparation app, free NEET preparation app, JEE 2027 syllabus checklist, NEET 2027 syllabus checklist">
+<link rel="canonical" href="https://stickynotes.prepex.io/">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="manifest" href="manifest.webmanifest">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sticky Notes by Prepex">
+<meta property="og:title" content="Sticky Notes by Prepex — Free JEE & NEET Study Planner, Syllabus Tracker & Pomodoro Timer">
+<meta property="og:description" content="Drag-and-drop sticky-note task board, Pomodoro focus timer, question log with accuracy tracking, and a full JEE/NEET syllabus tracker — free, no signup.">
+<meta property="og:url" content="https://stickynotes.prepex.io/">
+<meta property="og:image" content="https://stickynotes.prepex.io/logo.svg">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sticky Notes by Prepex — Free JEE & NEET Study Planner">
+<meta name="twitter:description" content="Sticky-note task board, Pomodoro timer, question log & syllabus tracker for JEE/NEET aspirants — free, no signup.">
+<meta name="twitter:image" content="https://stickynotes.prepex.io/logo.svg">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Patrick+Hand&family=Permanent+Marker&display=swap">
 <link rel="stylesheet" href="styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Sticky Notes by Prepex",
+  "url": "https://stickynotes.prepex.io/",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (runs in browser)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+  "description": "Free sticky-note study planner for JEE & NEET aspirants with a Pomodoro timer, question log, and syllabus tracker.",
+  "publisher": { "@type": "Organization", "name": "Prepex", "url": "https://prepex.io" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the best free syllabus tracker for JEE and NEET?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sticky Notes by Prepex is a free browser-based tracker that covers the full JEE (Physics, Chemistry, Mathematics) and NEET (Physics, Chemistry, Biology) syllabus, letting you mark each chapter as studied or revised and see live progress bars per subject." }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the Pomodoro timer help JEE/NEET preparation?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The Pomodoro technique breaks study time into focused sessions (default 25 minutes) followed by short breaks. This built-in timer lets JEE/NEET aspirants tag each focus session with a subject and chapter, log a daily focus history, and avoid burnout during long revision days." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I track how many questions I've solved for JEE Mains or NEET?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Use the Question Log tab to record every question you attempt with its subject, chapter, difficulty, and result (correct, incorrect, or skipped). The Dashboard then automatically calculates your accuracy overall and per subject." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Sticky Notes by Prepex free to use?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, it is completely free with no signup — all your data is stored locally in your browser. For a more complete, cloud-synced JEE/NEET preparation experience, check out Prepex." }
+    }
+  ]
+}
+</script>
 </head>
 <body>
+
+<a class="promo-banner" href="https://prepex.io" target="_blank" rel="noopener" id="prepex-banner">
+  <img src="logo.svg" alt="" class="promo-banner-icon" aria-hidden="true">
+  <span><strong>Use Prepex</strong> for better studies — Plan. Execute. Survive. Win.</span>
+  <span class="promo-banner-cta">Visit prepex.io →</span>
+</a>
+
 <div id="app">
 
   <header class="topbar">
     <div class="brand">
-      <span class="brand-note">📌</span>
-      <span class="brand-text">StudyBoard</span>
+      <img src="logo.svg" alt="Sticky Notes by Prepex logo" class="brand-logo">
+      <span class="brand-text">Sticky Notes <span class="brand-by">by Prepex</span></span>
     </div>
     <nav class="tabs" id="tabs">
       <button class="tab-btn active" data-tab="board">Board</button>
@@ -31,6 +99,11 @@
       <button class="exam-btn" data-exam="NEET">NEET</button>
     </div>
   </header>
+
+  <section class="hero">
+    <h1>Free Sticky-Note Study Planner, Syllabus Tracker &amp; Pomodoro Timer for JEE &amp; NEET Aspirants</h1>
+    <p>Pin tasks like real sticky notes, run focused Pomodoro sessions, log every question you solve with accuracy tracking, and check off the full JEE / NEET syllabus chapter by chapter — all free, all in your browser, no signup required.</p>
+  </section>
 
   <!-- BOARD -->
   <main id="view-board" class="view active">
@@ -210,6 +283,30 @@
       <div id="syllabus-progress-summary"></div>
     </div>
   </main>
+
+  <section class="faq-section">
+    <h2>Frequently asked questions</h2>
+    <details>
+      <summary>What is the best free syllabus tracker for JEE and NEET?</summary>
+      <p>Sticky Notes by Prepex is a free browser-based tracker that covers the full JEE (Physics, Chemistry, Mathematics) and NEET (Physics, Chemistry, Biology) syllabus, letting you mark each chapter as studied or revised and see live progress bars per subject.</p>
+    </details>
+    <details>
+      <summary>How does the Pomodoro timer help JEE/NEET preparation?</summary>
+      <p>The Pomodoro technique breaks study time into focused sessions (default 25 minutes) followed by short breaks. This built-in timer lets you tag each focus session with a subject and chapter, log a daily focus history, and avoid burnout during long revision days.</p>
+    </details>
+    <details>
+      <summary>How do I track how many questions I've solved for JEE Mains or NEET?</summary>
+      <p>Use the Question Log tab to record every question you attempt with its subject, chapter, difficulty, and result (correct, incorrect, or skipped). The Dashboard then automatically calculates your accuracy overall and per subject.</p>
+    </details>
+    <details>
+      <summary>Is Sticky Notes by Prepex free to use?</summary>
+      <p>Yes — completely free, with no signup. All your data is stored locally in your browser. For a more complete, cloud-synced JEE/NEET preparation experience, check out <a href="https://prepex.io" target="_blank" rel="noopener" class="faq-prepex-link">Prepex</a>.</p>
+    </details>
+  </section>
+
+  <footer class="site-footer">
+    <p>Built with 📌 by <a href="https://prepex.io" target="_blank" rel="noopener">Prepex</a> — Plan. Execute. Survive. Win.</p>
+  </footer>
 
 </div>
 

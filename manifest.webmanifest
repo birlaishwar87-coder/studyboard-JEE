@@ -1,0 +1,12 @@
+{
+  "name": "Sticky Notes by Prepex — JEE & NEET Study Tracker",
+  "short_name": "Sticky Notes",
+  "description": "Free sticky-note kanban board, Pomodoro timer, question log and syllabus tracker built for JEE & NEET aspirants.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#5c3b21",
+  "theme_color": "#b6884f",
+  "icons": [
+    { "src": "logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

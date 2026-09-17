@@ -5,6 +5,38 @@ function uid() {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
 }
 
+// ---------- Analytics (isolated Supabase project, insert-only) ----------
+const ANALYTICS_URL = 'https://isdgjqazzmqalmqrahnd.supabase.co/rest/v1/analytics_events';
+const ANALYTICS_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlzZGdqcWF6em1xYWxtcXJhaG5kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk2MTEyNjYsImV4cCI6MjEwNTE4NzI2Nn0.vG0zQEbYb6GTGBmOWmJqQbPlXwotVhiDKaD2xrNMtgM';
+
+function getSessionId() {
+  let id = localStorage.getItem('sb_session_id');
+  if (!id) {
+    id = uid();
+    localStorage.setItem('sb_session_id', id);
+  }
+  return id;
+}
+
+function trackEvent(eventType) {
+  try {
+    fetch(ANALYTICS_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': ANALYTICS_KEY,
+        'Authorization': 'Bearer ' + ANALYTICS_KEY,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ session_id: getSessionId(), event_type: eventType, path: location.pathname }),
+      keepalive: true
+    }).catch(() => {});
+  } catch (e) {}
+}
+
+trackEvent('page_view');
+document.getElementById('prepex-banner').addEventListener('click', () => trackEvent('cta_click'));
+
 function loadState() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);

@@ -1,0 +1,38 @@
+body.admin-body { background: var(--wood, #5c3b21); margin: 0; font-family: 'Nunito', sans-serif; }
+.hidden { display: none !important; }
+
+.admin-gate { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.admin-gate-card {
+  background: #fffaf0;
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 340px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+.admin-gate-logo { width: 48px; height: 48px; margin-bottom: 10px; }
+.admin-gate-card h1 { font-family: 'Permanent Marker', cursive; font-size: 19px; color: #5c3b21; margin: 0 0 8px; }
+.admin-gate-card p { font-size: 13px; color: #6b563b; margin: 0 0 14px; }
+.admin-gate-card input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1.5px solid #e2d3b8;
+  font-size: 14px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+.admin-error { color: #c0392b; font-weight: 700; min-height: 18px; }
+
+.admin-dashboard { padding: 28px; max-width: 900px; margin: 0 auto; }
+.admin-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.admin-header .brand { display: flex; align-items: center; gap: 8px; }
+.admin-header .brand-text { font-family: 'Permanent Marker', cursive; color: #ffe9c2; font-size: 20px; }
+.admin-header .brand-by { font-size: 13px; opacity: 0.75; font-family: 'Nunito', sans-serif; }
+
+.bar-chart { display: flex; align-items: flex-end; gap: 10px; height: 160px; padding-top: 10px; }
+.bar-chart-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end; }
+.bar-chart-bar { width: 100%; background: linear-gradient(180deg, #8fd18a, #5cb85c); border-radius: 4px 4px 0 0; min-height: 2px; }
+.bar-chart-count { font-size: 12px; font-weight: 800; color: #5c3b21; }
+.bar-chart-label { font-size: 10.5px; color: #8a7c63; }
